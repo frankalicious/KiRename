@@ -274,6 +274,20 @@ def main(argv):
         print "error copying file %s : %s" % (exception.filename, exception.strerror)
         quit()
 
+    #replace project name in files with new name https://pythonexamples.org/python-replace-string-in-file/
+    files = [f for f in os.listdir(destdir) if os.path.isfile(os.path.join(destdir, f))]
+
+    for current_file in files:
+        dest_file = os.path.join (destdir, current_file)
+
+        fin = open(dest_file, "rt")
+        data = fin.read()
+        data = data.replace(project, new_name)
+        fin.close()
+
+        fin = open(dest_file, "wt")
+        fin.write(data)
+        fin.close()
 
 if __name__ == "__main__":
    main(sys.argv[1:])
