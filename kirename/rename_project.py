@@ -158,11 +158,11 @@ def main(argv):
     # first find the project name
 
     project = ""
-    for file in top_level_files:
-        if file.endswith (".pro"):
+    for current_file in top_level_files:
+        if current_file.endswith (".pro"):
         
             if project == "":
-                project = before (file, ".pro")
+                project = before (current_file, ".pro")
             else:
                 print "error: multiple projects found in %s" % sourcedir
                 quit(1)
@@ -229,32 +229,32 @@ def main(argv):
 
     try:
         # now copy files
-        for file in files:
-            if (file.endswith (".sch") or 
-                file.endswith (".lib") or 
-                file.endswith (".mod") or 
-                file.endswith (".cmp") or 
-                file.endswith (".brd") or 
-                file.endswith (".kicad_pcb") or
-                file.endswith (".pos") or 
-                file.endswith (".net") or 
-                file.endswith (".pro") or 
-                file.endswith (".py") or 
-                file.endswith (".pdf") or 
-                file.endswith (".txt") or 
-                file.endswith (".dcm") or 
-                file.endswith (".kicad_wks") or 
+        for current_file in files:
+            if (current_file.endswith (".sch") or 
+                current_file.endswith (".lib") or 
+                current_file.endswith (".mod") or 
+                current_file.endswith (".cmp") or 
+                current_file.endswith (".brd") or 
+                current_file.endswith (".kicad_pcb") or
+                current_file.endswith (".pos") or 
+                current_file.endswith (".net") or 
+                current_file.endswith (".pro") or 
+                current_file.endswith (".py") or 
+                current_file.endswith (".pdf") or 
+                current_file.endswith (".txt") or 
+                current_file.endswith (".dcm") or 
+                current_file.endswith (".kicad_wks") or 
+                current_file == "fp-lib-table" or 
+                current_file == "sym-lib-table"):
 
-                if file.startswith (project):
-                file == "fp-lib-table" or 
-                file == "sym-lib-table"):
+                if current_file.startswith (project):
                     # copy with rename
 
-                    source_file = os.path.join(sourcedir, file)
-                    dest_file = os.path.join (destdir, new_name + after (file, project))
+                    source_file = os.path.join(sourcedir, current_file)
+                    dest_file = os.path.join (destdir, new_name + after (current_file, project))
         
                     if dry_run:
-                        print "rename : %s ==> %s" % (file, dest_file)
+                        print "rename : %s ==> %s" % (current_file, dest_file)
                     else:
                         if mode == "copy":
                             shutil.copy2 (source_file, dest_file)
@@ -263,10 +263,10 @@ def main(argv):
                 else:
                     if mode=="copy":
                         # straight copy
-                        source_file = os.path.join(sourcedir, file)
-                        dest_file = os.path.join (destdir, file)
+                        source_file = os.path.join(sourcedir, current_file)
+                        dest_file = os.path.join (destdir, current_file)
                         if dry_run:
-                            print "copy   : %s ==> %s" % (file, dest_file)
+                            print "copy   : %s ==> %s" % (current_file, dest_file)
                         else:
                             shutil.copy2 (source_file, dest_file)
 
