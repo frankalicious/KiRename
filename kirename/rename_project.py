@@ -244,9 +244,10 @@ def main(argv):
                 file.endswith (".txt") or 
                 file.endswith (".dcm") or 
                 file.endswith (".kicad_wks") or 
-                file == "fp-lib-table"):
 
                 if file.startswith (project):
+                file == "fp-lib-table" or 
+                file == "sym-lib-table"):
                     # copy with rename
 
                     source_file = os.path.join(sourcedir, file)
