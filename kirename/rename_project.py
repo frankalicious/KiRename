@@ -243,7 +243,8 @@ def main(argv):
                 current_file.endswith (".pdf") or 
                 current_file.endswith (".txt") or 
                 current_file.endswith (".dcm") or 
-                current_file.endswith (".kicad_wks") or 
+                current_file.endswith (".kicad_wks") or
+                current_file.endswith (".pretty") or 
                 current_file == "fp-lib-table" or 
                 current_file == "sym-lib-table"):
 
